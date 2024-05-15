@@ -50,7 +50,7 @@
 								<div class="row">
 									<div class="col-lg-6 col-xl-6">
 										<div class="form-group has-icon-left">
-											<label for="school_class_id">Kelas:</label>
+											<label for="school_class_id">Divisi</label>
 											<div class="position-relative">
 												<input type="text" class="form-control" id="school_class_id" disabled />
 												<div class="form-control-icon">
@@ -62,7 +62,7 @@
 
 									<div class="col-lg-6 col-xl-6">
 										<div class="form-group has-icon-left">
-											<label for="school_major_id">Jurusan:</label>
+											<label for="school_major_id">Fakultas</label>
 											<div class="position-relative">
 												<input type="text" class="form-control" id="school_major_id" disabled />
 												<div class="form-control-icon">

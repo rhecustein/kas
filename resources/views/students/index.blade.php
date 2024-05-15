@@ -87,7 +87,7 @@
 							<thead>
 								<tr>
 									<th>#</th>
-									<th>NIS/NISN/NIM</th>
+									<th>NIP/NPM</th>
 									<th>Nama Lengkap</th>
 									<th>Kelas</th>
 									<th>Jurusan</th>
