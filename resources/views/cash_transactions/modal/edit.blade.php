@@ -13,13 +13,13 @@
 				<form class="form form-vertical">
 					<div class="form-body">
 						<div class="form-group has-icon-left">
-							<label for="student_id">Pelajar:</label>
+							<label for="student_id">Mahasiswa:</label>
 							<div class="input-group mb-3">
 								<label class="input-group-text" for="student_id">
 									<div><i class="bi bi-person-badge-fill"></i></div>
 								</label>
 								<select class="form-select" id="student_id">
-									<option value="">Pilih Pelajar</option>
+									<option value="">Pilih Mahasiswa</option>
 									@foreach ($students as $student)
 									<option value="{{ $student->id }}">{{ $student->student_identification_number }} - {{
 										$student->name }}</option>

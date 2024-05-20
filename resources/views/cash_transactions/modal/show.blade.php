@@ -16,7 +16,7 @@
 							<div class="form-body">
 								<div class="row">
 									<div class="col-12 text-center">
-										<div class="alert alert-primary"><i class="bi bi-person-vcard"></i> Detail Informasi Pelajar
+										<div class="alert alert-primary"><i class="bi bi-person-vcard"></i> Detail Informasi Mahasiswa
 										</div>
 									</div>
 								</div>
@@ -36,7 +36,7 @@
 
 									<div class="col-md-12 col-lg-12 col-xl-6">
 										<div class="form-group has-icon-left">
-											<label for="student_id">Pelajar:</label>
+											<label for="student_id">Mahasiswa:</label>
 											<div class="position-relative">
 												<input type="text" class="form-control" id="student_id" disabled />
 												<div class="form-control-icon">
