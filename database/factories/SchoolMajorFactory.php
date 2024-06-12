@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\SchoolMajor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class SchoolMajorFactory extends Factory
 {
+    protected $model = SchoolMajor::class;
     /**
      * Define the model's default state.
      *
@@ -17,8 +19,8 @@ class SchoolMajorFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->word,
-            'abbreviation' => fake()->unique()->word,
+            'name' => $this->faker->word(),
+            'abbreviation' => $this->faker->unique()->word(),
         ];
     }
 }

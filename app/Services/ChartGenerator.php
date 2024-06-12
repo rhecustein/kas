@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\CashTransaction;
 use App\Models\SchoolClass;
 use App\Models\SchoolMajor;
-use App\Models\Student;
 use App\Models\User;
 use App\Repositories\CashTransactionRepository;
 use App\Repositories\StudentRepository;
@@ -33,10 +32,14 @@ class ChartGenerator
 
         return [
             'counter' => [
-                'student' => Student::count(),
+                'student' => User::whereHas('role',function($query){
+                    $query->where('name', 'student');
+                })->count(),
                 'schoolClass' => SchoolClass::count(),
                 'schoolMajor' => SchoolMajor::count(),
-                'administrator' => User::count(),
+                'administrator' => User::whereHas('role',function($query){
+                    $query->where('name', 'admin');
+                })->count(),
             ],
             'pieChart' => [
                 'studentGender' => [

@@ -4,9 +4,9 @@
 <div class="row h-100">
 	<div class="col-lg-5 col-12">
 		<div id="auth-left">
-			<h1 class="auth-title">Log in Administrator.</h1>
+			<h1 class="auth-title">Log in.</h1>
 			<p class="auth-subtitle mb-5">
-				Log in untuk melanjutkan ke dalam dashboard.
+				Log in untuk melanjutkan ke halaman detail transaksi
 			</p>
 
 			@if(session('error'))
@@ -26,7 +26,7 @@
 			<form action="{{ route('login') }}" method="POST">
 				@csrf
 				<div class="form-group position-relative has-icon-left mb-4">
-					<input type="text" class="form-control form-control-xl" name="email" placeholder="Email" autofocus />
+					<input type="text" class="form-control form-control-xl" name="username" placeholder="Username" autofocus />
 					<div class="form-control-icon">
 						<i class="bi bi-person"></i>
 					</div>

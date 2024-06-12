@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('/', fn () => redirect()->route('dashboard'));
-
+    Route::get('/admin/login', [AuthenticationController::class, 'admin']);
     Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthenticationController::class, 'login']);
 });
@@ -32,14 +32,17 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::middleware('role:admin')->group(function(){
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-    Route::get('/school-classes', SchoolClassController::class)->name('school-classes.index');
-    Route::get('/school-majors', SchoolMajorController::class)->name('school-majors.index');
-    Route::get('/administrators', AdministratorController::class)->name('administrators.index');
-    Route::get('/students', StudentController::class)->name('students.index');
+        Route::get('/school-classes', SchoolClassController::class)->name('school-classes.index');
+        Route::get('/school-majors', SchoolMajorController::class)->name('school-majors.index');
+        Route::get('/administrators', AdministratorController::class)->name('administrators.index');
+        Route::get('/students', StudentController::class)->name('students.index');
+        Route::get('/cash-transactions', CashTransactionController::class)->name('cash-transactions.index');
+    });
 
-    Route::get('/cash-transactions', CashTransactionController::class)->name('cash-transactions.index');
+
     Route::get('/cash-transactions/report', CashTransactionReportController::class)->name('cash-transactions.report.index');
     Route::get('/cash-transactions/filter', CashTransactionFilterController::class)->name('cash-transactions.filter.index');
 });

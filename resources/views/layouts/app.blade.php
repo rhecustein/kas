@@ -68,7 +68,7 @@
 				<div class="sidebar-menu">
 					<ul class="menu">
 						<li class="sidebar-title">Menu</li>
-
+						@if(Auth::user()->role->name == "admin" )
 						<li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
 							<a href="{{ route('dashboard') }}" class="sidebar-link">
 								<i class="bi bi-grid-fill"></i>
@@ -105,7 +105,7 @@
 						</li>
 							</ul>
 						</li>
-						
+
 						<li
 							class="sidebar-item has-sub {{ request()->routeIs('cash-transactions.index') ? 'active' : '' }} {{ request()->routeIs('cash-transactions.filter.index') ? 'active' : '' }}">
 							<a href="#" class="sidebar-link">
@@ -135,6 +135,14 @@
 								<span>Administrator</span>
 							</a>
 						</li>
+						@else
+						<li class="sidebar-item {{ request()->routeIs('cash-transactions.report.*') ? 'active' : '' }}">
+							<a href="{{ route('cash-transactions.report.index') }}" class="sidebar-link">
+								<i class="bi bi-file-earmark-spreadsheet-fill"></i>
+								<span>Laporan Transaksi </span>
+							</a>
+						</li>
+						@endif
 						<li class="sidebar-item">
 							<form action="{{ route('logout') }}" method="POST" id="logout">
 								@csrf

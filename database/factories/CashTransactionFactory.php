@@ -2,8 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Student;
-use App\Models\User;
+use App\Models\CashTransaction;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CashTransactionFactory extends Factory
 {
+    protected $model = CashTransaction::class;
     /**
      * Define the model's default state.
      *
@@ -18,14 +18,20 @@ class CashTransactionFactory extends Factory
      */
     public function definition(): array
     {
-        $datePaid = now()->createFromDate(rand(2010, now()->year), rand(1, 12), rand(1, 31))->format('Y-m-d');
-
         return [
-            'student_id' => Student::inRandomOrder()->first()->id,
-            'amount' => round(fake()->numberBetween(50000, 100000), -3),
-            'date_paid' => $datePaid,
-            'transaction_note' => fake()->randomElement([null, fake()->sentence]),
-            'created_by' => User::inRandomOrder()->first()->id,
+            'student_id' => function () {
+                return \App\Models\User::whereHas('role', function ($query) {
+                    $query->where('name', 'student');
+                })->inRandomOrder()->first()->id;
+            },
+            'amount' => $this->faker->numberBetween(10000, 1000000),
+            'date_paid' => $this->faker->date(),
+            'transaction_note' => $this->faker->sentence(),
+            'created_by' => function () {
+                return \App\Models\User::whereHas('role', function ($query) {
+                    $query->where('name', 'admin');
+                })->inRandomOrder()->first()->id;
+            },
         ];
     }
 }

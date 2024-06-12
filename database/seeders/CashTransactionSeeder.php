@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\CashTransaction;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CashTransactionSeeder extends Seeder
@@ -12,6 +13,6 @@ class CashTransactionSeeder extends Seeder
      */
     public function run(): void
     {
-        CashTransaction::factory()->count(200)->create();
+        CashTransaction::factory()->count(20)->create();
     }
 }

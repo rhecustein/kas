@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CashTransaction;
-use App\Models\Student;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 
 class CashTransactionController extends Controller
@@ -15,7 +15,7 @@ class CashTransactionController extends Controller
      */
     public function __invoke(): View
     {
-        $students = Student::select(
+        $students = User::select(
             'id',
             'school_class_id',
             'school_major_id',
@@ -23,8 +23,10 @@ class CashTransactionController extends Controller
             'student_identification_number',
             'phone_number',
             'gender'
-        )
-            ->with('schoolClass:id,name', 'schoolMajor:id,name,abbreviation')
+        )->whereHas('role',function($query){
+            $query->where('name', 'student');
+        })
+        ->with('schoolClass:id,name', 'schoolMajor:id,name,abbreviation')
             ->orderBy('student_identification_number')->get();
 
         $studentsPaidThisWeekIds = CashTransaction::whereBetween('date_paid', [
@@ -32,11 +34,11 @@ class CashTransactionController extends Controller
             now()->endOfWeek()->toDateString(),
         ])->pluck('student_id');
 
-        $studentsPaidThisWeek = $students->filter(function (Student $student) use ($studentsPaidThisWeekIds) {
+        $studentsPaidThisWeek = $students->filter(function (User $student) use ($studentsPaidThisWeekIds) {
             return $studentsPaidThisWeekIds->contains($student->id);
         })->sortBy('name');
 
-        $studentsNotPaidThisWeek = $students->reject(function (Student $student) use ($studentsPaidThisWeekIds) {
+        $studentsNotPaidThisWeek = $students->reject(function (User $student) use ($studentsPaidThisWeekIds) {
             return $studentsPaidThisWeekIds->contains($student->id);
         })->sortBy('name');
 

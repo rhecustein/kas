@@ -13,7 +13,7 @@
 				<form class="form form-vertical">
 					<div class="form-body">
 						<div class="row">
-							<div class="col-lg-4">
+							{{--<div class="col-lg-4">
 								<div class="form-group has-icon-left">
 									<label for="student_identification_number">NIP/NPM:</label>
 									<div class="position-relative">
@@ -24,8 +24,8 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-lg-4">
+							</div>--}}
+							<div class="col-lg-6">
 								<div class="form-group has-icon-left">
 									<label for="name">Nama Lengkap:</label>
 									<div class="position-relative">
@@ -36,7 +36,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-4">
+							<div class="col-lg-6">
 								<div class="form-group has-icon-left">
 									<label for="gender">Jenis Kelamin:</label>
 									<div class="input-group mb-3">
@@ -90,7 +90,7 @@
 						</div>
 
 						<div class="row">
-							<div class="col-lg-6">
+							{{--<div class="col-lg-6">
 								<div class="form-group has-icon-left">
 									<label for="email">Alamat Email:</label>
 									<div class="position-relative">
@@ -112,7 +112,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div>--}}
 						</div>
 
 						<div class="row">
