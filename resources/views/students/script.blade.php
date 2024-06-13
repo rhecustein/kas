@@ -6,13 +6,7 @@
 			ajax: "{{ route('api.v1.datatables.students.index') }}",
 			columns: [
 				{ data: "DT_RowIndex", name: "DT_RowIndex" },
-				{
-					data: "student_identification_number",
-					name: "student_identification_number",
-				},
 				{ data: "name", name: "name" },
-				{ data: "school_class", name: "school_class" },
-				{ data: "school_major", name: "school_major" },
 				{ data: "school_year", name: "school_year" },
 				{ data: "action", name: "action" },
 			],
@@ -22,14 +16,7 @@
 			e.preventDefault();
 
 			const formData = {
-				school_class_id: $("#createModal form #school_class_id").val(),
-				school_major_id: $("#createModal form #school_major_id").val(),
-				student_identification_number: $(
-					"#createModal form #student_identification_number"
-				).val(),
 				name: $("#createModal form #name").val(),
-				email: $("#createModal form #email").val(),
-				phone_number: $("#createModal form #phone_number").val(),
 				gender: $("#createModal form #gender").val(),
 				school_year_start: $("#createModal form #school_year_start").val(),
 				school_year_end: $("#createModal form #school_year_end").val(),
@@ -85,14 +72,7 @@
 					"Content-Type": "application/json",
 				},
 				success: (res) => {
-					$("#showModal form #school_class_id").val(res.data.school_class.name);
-					$("#showModal form #school_major_id").val(res.data.school_major.name);
-					$("#showModal form #student_identification_number").val(
-						res.data.student_identification_number
-					);
 					$("#showModal form #name").val(res.data.name);
-					$("#showModal form #email").val(res.data.email);
-					$("#showModal form #phone_number").val(res.data.phone_number);
 					$("#showModal form #gender").val(res.data.gender_name);
 					$("#showModal form #school_year_start").val(
 						res.data.school_year_start
@@ -126,14 +106,9 @@
 					"Content-Type": "application/json",
 				},
 				success: (res) => {
-					$("#updateModal form #school_class_id").val(res.data.school_class_id);
-					$("#updateModal form #school_major_id").val(res.data.school_major_id);
-					$("#updateModal form #student_identification_number").val(
-						res.data.student_identification_number
-					);
+
 					$("#updateModal form #name").val(res.data.name);
-					$("#updateModal form #email").val(res.data.email);
-					$("#updateModal form #phone_number").val(res.data.phone_number);
+
 					$("#updateModal form #gender").val(res.data.gender);
 					$("#updateModal form #school_year_start").val(
 						res.data.school_year_start
@@ -153,14 +128,7 @@
 			e.preventDefault();
 
 			const formData = {
-				school_class_id: $("#updateModal form #school_class_id").val(),
-				school_major_id: $("#updateModal form #school_major_id").val(),
-				student_identification_number: $(
-					"#updateModal form #student_identification_number"
-				).val(),
 				name: $("#updateModal form #name").val(),
-				email: $("#updateModal form #email").val(),
-				phone_number: $("#updateModal form #phone_number").val(),
 				gender: $("#updateModal form #gender").val(),
 				school_year_start: $("#updateModal form #school_year_start").val(),
 				school_year_end: $("#updateModal form #school_year_end").val(),

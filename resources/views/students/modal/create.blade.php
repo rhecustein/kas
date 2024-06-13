@@ -54,68 +54,6 @@
 						</div>
 
 						<div class="row">
-							<div class="col-lg-6">
-								<div class="form-group has-icon-left">
-									<label for="school_class_id">Divisi:</label>
-									<div class="input-group mb-3">
-										<label class="input-group-text" for="school_class_id">
-											<div><i class="bi bi-bookmark-fill"></i></div>
-										</label>
-										<select class="form-select" id="school_class_id">
-											<option value="">Pilih Divisi</option>
-											@foreach ($schoolClasses as $schoolClass)
-											<option value="{{ $schoolClass->id }}">{{ $schoolClass->name }}</option>
-											@endforeach
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-6">
-								<div class="form-group has-icon-left">
-									<label for="school_major_id">Fakultas:</label>
-									<div class="input-group mb-3">
-										<label class="input-group-text" for="school_major_id">
-											<div><i class="bi bi-briefcase-fill"></i></div>
-										</label>
-										<select class="form-select" id="school_major_id">
-											<option value="">Pilih Fakultas</option>
-											@foreach ($schoolMajors as $schoolMajor)
-											<option value="{{ $schoolMajor->id }}">{{ $schoolMajor->name }}</option>
-											@endforeach
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							{{-- <div class="col-lg-6">
-								<div class="form-group has-icon-left d-none">
-									<label for="email">Alamat Email:</label>
-									<div class="position-relative">
-										<input type="email" class="form-control" id="email" placeholder="Masukkan alamat email..." />
-										<div class="form-control-icon">
-											<i class="bi bi-envelope-fill"></i>
-										</div>
-									</div>
-								</div>
-							</div> --}}
-							{{-- <div class="col-lg-6">
-								<div class="form-group has-icon-left">
-									<label for="phone_number">Nomor Handphone:</label>
-									<div class="position-relative">
-										<input type="number" class="form-control" id="phone_number"
-											placeholder="Masukkan nomor handphone..." />
-										<div class="form-control-icon">
-											<i class="bi bi-telephone-fill"></i>
-										</div>
-									</div>
-								</div>
-							</div> --}}
-						</div>
-
-						<div class="row">
 							<div class="col-12">
 								<div class="form-group">
 									<label for="school_year_start">Tahun Ajaran Masuk:</label>

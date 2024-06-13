@@ -91,18 +91,6 @@
 								<span>Mahasiswa</span>
 							</a>
 						</li>
-						<li class="sidebar-item {{ request()->routeIs('school-classes.*') ? 'active' : '' }}">
-							<a href="{{ route('school-classes.index') }}" class="sidebar-link">
-								<i class="bi bi-bookmark-fill"></i>
-								<span>Divisi</span>
-							</a>
-						</li>
-						<li class="sidebar-item {{ request()->routeIs('school-majors.*') ? 'active' : '' }}">
-							<a href="{{ route('school-majors.index') }}" class="sidebar-link">
-								<i class="bi bi-briefcase-fill"></i>
-								<span>Fakultas</span>
-							</a>
-						</li>
 							</ul>
 						</li>
 

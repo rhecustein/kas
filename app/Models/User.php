@@ -21,8 +21,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'school_class_id',
-        'school_major_id',
         'student_identification_number',
         'name',
         'username',
@@ -66,10 +64,21 @@ class User extends Authenticatable
         });
     }
 
+    protected static function getFirstName($name) {
+        $trim = trim($name);
+        $pattern = '/^(\S+)/';
+        if (preg_match($pattern, $trim, $matches)) {
+            return $matches[1];
+        }
+        return '';
+    }
+
     protected static function generateUniqueUsername($name)
     {
         $tolower = strtolower($name);
-        $baseUsername = Str::slug($tolower);
+        $firstName = static::getFirstName($tolower);
+
+        $baseUsername = Str::slug($firstName);
         $username = $baseUsername;
         $counter = 1;
 
@@ -86,16 +95,7 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function schoolClass(): BelongsTo
-    {
-        return $this->belongsTo(SchoolClass::class);
-    }
 
-
-    public function schoolMajor(): BelongsTo
-    {
-        return $this->belongsTo(SchoolMajor::class,'school_major_id');
-    }
 
 
     public function createdCashTransactions():HasMany

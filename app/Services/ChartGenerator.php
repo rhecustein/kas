@@ -2,9 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\CashTransaction;
-use App\Models\SchoolClass;
-use App\Models\SchoolMajor;
 use App\Models\User;
 use App\Repositories\CashTransactionRepository;
 use App\Repositories\StudentRepository;
@@ -24,7 +21,6 @@ class ChartGenerator
      */
     public function generateCharts(): array
     {
-        $studentWithMajors = SchoolMajor::select('name', 'abbreviation')->withCount('students')->get();
         $cashTransactionAmountPerYear = $this->cashTransactionRepository->getTotalAmountsPerYear();
         $cashTransactionCountPerYear = $this->cashTransactionRepository->getCountsPerYear();
         $cashTransactionCountByGender = $this->cashTransactionRepository->getCountByGender();
@@ -35,8 +31,6 @@ class ChartGenerator
                 'student' => User::whereHas('role',function($query){
                     $query->where('name', 'student');
                 })->count(),
-                'schoolClass' => SchoolClass::count(),
-                'schoolMajor' => SchoolMajor::count(),
                 'administrator' => User::whereHas('role',function($query){
                     $query->where('name', 'admin');
                 })->count(),
@@ -48,12 +42,6 @@ class ChartGenerator
                         $studentGenders['female']
                     ],
                     'labels' => ['Laki-laki', 'Perempuan']
-                ],
-                'studentMajor' => [
-                    'series' => $studentWithMajors->pluck('students_count'),
-                    'labels' => $studentWithMajors->map(function ($studentMajor) {
-                        return "$studentMajor->name ($studentMajor->abbreviation)";
-                    })
                 ],
                 'cashTransactionCountByGender' => [
                     'series' => $cashTransactionCountByGender->pluck('total_paid'),

@@ -20,7 +20,9 @@ class AdministratorController extends Controller
      */
     public function index(): JsonResponse
     {
-        $administrators = User::select('id', 'name', 'email', 'created_at');
+        $administrators = User::whereHas('role',function($query){
+            $query->where('name', 'admin');
+        })->select('id', 'name', 'email', 'created_at');
 
         return datatables()->of($administrators)
             ->addIndexColumn()

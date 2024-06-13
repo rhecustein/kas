@@ -20,22 +20,17 @@ class StudentController extends Controller
     {
         $students = User::select(
             'id',
-            'school_class_id',
-            'school_major_id',
-            'student_identification_number',
             'name',
             'school_year_start',
             'school_year_end'
         )->whereHas('role', function ($query) {
             $query->where('name', 'student');
-        })->with('schoolClass:id,name', 'schoolMajor:id,name');
+        })->latest();
 
         return datatables()->of($students)
             ->addIndexColumn()
             ->blacklist(['DT_RowIndex'])
             ->orderColumn('DT_RowIndex', false)
-            ->addColumn('school_class', 'students.datatables.school_class')
-            ->addColumn('school_major', 'students.datatables.school_major')
             ->addColumn('school_year', 'students.datatables.school_year')
             ->addColumn('action', 'students.datatables.action')
             ->rawColumns(['school_class', 'school_major', 'school_year', 'action'])
@@ -50,8 +45,6 @@ class StudentController extends Controller
     public function store(Request $request): JsonResponse
     {
         $rules = [
-            'school_class_id' => 'required|numeric|exists:school_classes,id',
-            'school_major_id' => 'required|numeric|exists:school_majors,id',
             'student_identification_number' => 'nullable|numeric|unique:students,student_identification_number',
             'name' => 'required|string|min:3|max:255',
             'email' => 'nullable|email|min:3|max:255|unique:students,email',
@@ -62,13 +55,6 @@ class StudentController extends Controller
         ];
 
         $messages = [
-            'school_class_id.required' => 'Kolom Divisi harus diisi!',
-            'school_class_id.numeric' => 'Kolom Divisi harus berupa angka!',
-            'school_class_id.exists' => 'Divisi yang dipilih tidak ditemukan!',
-
-            'school_major_id.required' => 'Kolom jurusan harus diisi!',
-            'school_major_id.numeric' => 'Kolom jurusan harus berupa angka!',
-            'school_major_id.exists' => 'Jurusan yang dipilih tidak ditemukan!',
 
             'student_identification_number.required' => 'Kolom nomor identitas pelajar harus diisi!',
             'student_identification_number.numeric' => 'Kolom nomor identitas pelajar harus berupa angka!',
@@ -134,7 +120,7 @@ class StudentController extends Controller
         return response()->json([
             'code' => Response::HTTP_OK,
             'message' => 'success',
-            'data' => new StudentResource($student->load('schoolClass', 'schoolMajor')),
+            'data' => new StudentResource($student),
         ], Response::HTTP_OK);
     }
 
@@ -148,8 +134,6 @@ class StudentController extends Controller
     public function update(Request $request, User $student): JsonResponse
     {
         $rules = [
-            'school_class_id' => 'required|numeric|exists:school_classes,id',
-            'school_major_id' => 'required|numeric|exists:school_majors,id',
             'student_identification_number' => 'nullable|numeric|unique:students,student_identification_number,' . $student->id,
             'name' => 'required|string|min:3|max:255',
             'email' => 'nullable|email|min:3|max:255|unique:students,email,' . $student->id,
@@ -160,13 +144,6 @@ class StudentController extends Controller
         ];
 
         $messages = [
-            'school_class_id.required' => 'Kolom Divisi harus diisi!',
-            'school_class_id.numeric' => 'Kolom Divisi harus berupa angka!',
-            'school_class_id.exists' => 'Divisi yang dipilih tidak ditemukan!',
-
-            'school_major_id.required' => 'Kolom jurusan harus diisi!',
-            'school_major_id.numeric' => 'Kolom jurusan harus berupa angka!',
-            'school_major_id.exists' => 'Jurusan yang dipilih tidak ditemukan!',
 
             'student_identification_number.required' => 'Kolom nomor identitas pelajar harus diisi!',
             'student_identification_number.numeric' => 'Kolom nomor identitas pelajar harus berupa angka!',
@@ -227,7 +204,7 @@ class StudentController extends Controller
      */
     public function destroy(User $student): JsonResponse
     {
-        if ($student->cashTransactions()->exists()) {
+        if ($student->studentCashTransactions()->exists()) {
             return response()->json([
                 'code' => Response::HTTP_CONFLICT,
                 'message' => 'Data Mahasiswa tersebut terkait dengan transaksi kas, tidak dapat dihapus!',

@@ -13,18 +13,7 @@
 				<form class="form form-vertical">
 					<div class="form-body">
 						<div class="row">
-							<div class="col-lg-4">
-								<div class="form-group has-icon-left">
-									<label for="student_identification_number">NIP/NPM:</label>
-									<div class="position-relative">
-										<input type="number" class="form-control" id="student_identification_number" disabled />
-										<div class="form-control-icon">
-											<div class="bi bi-person-bounding-box"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4">
+							<div class="col-lg-6">
 								<div class="form-group has-icon-left">
 									<label for="name">Nama Lengkap:</label>
 									<div class="position-relative">
@@ -35,7 +24,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-4">
+							<div class="col-lg-6">
 								<div class="form-group has-icon-left">
 									<label for="gender">Jenis Kelamin:</label>
 									<div class="position-relative">
@@ -48,31 +37,7 @@
 							</div>
 						</div>
 
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="form-group has-icon-left">
-									<label for="school_class_id">Divisi</label>
-									<div class="position-relative">
-										<input type="text" class="form-control" id="school_class_id" disabled />
-										<div class="form-control-icon">
-											<i class="bi bi-bookmark-fill"></i>
-										</div>
-									</div>
-								</div>
-							</div>
 
-							<div class="col-lg-6">
-								<div class="form-group has-icon-left">
-									<label for="school_major_id">Fakultas</label>
-									<div class="position-relative">
-										<input type="text" class="form-control" id="school_major_id" disabled />
-										<div class="form-control-icon">
-											<i class="bi bi-briefcase-fill"></i>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 
 						<div class="row">
 							<div class="col-lg-6">

@@ -43,8 +43,9 @@ class CashTransactionController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+
         $rules = [
-            'student_id' => 'required|exists:students,id',
+            'student_id' => 'required|exists:users,id',
             'amount' => 'required|numeric',
             'date_paid' => 'required|date',
             'transaction_note' => 'nullable|string|min:3|max:255',
@@ -70,7 +71,6 @@ class CashTransactionController extends Controller
             'created_by.unique' => 'Pencatat transaksi tidak ditemukan!.',
         ];
 
-        // TODO: the created_by should dynamic ID from authenticated user!
         $validator = Validator::make($request->merge(['created_by' => 1])->all(), $rules, $messages);
         if ($validator->fails()) {
             return response()->json([
@@ -105,9 +105,7 @@ class CashTransactionController extends Controller
     public function show(CashTransaction $cashTransaction): JsonResponse
     {
         $cashTransaction->load(
-            'student:id,school_class_id,school_major_id,student_identification_number,name,phone_number',
-            'student.schoolClass:id,name',
-            'student.schoolMajor:id,name',
+            'student:id,name',
             'createdBy:id,name'
         )->append('amount_formatted')
             ->append('date_paid_formatted');;
@@ -129,7 +127,7 @@ class CashTransactionController extends Controller
     public function update(Request $request, CashTransaction $cashTransaction): JsonResponse
     {
         $rules = [
-            'student_id' => 'required|numeric|exists:students,id',
+            'student_id' => 'required|numeric|exists:users,id',
             'amount' => 'required|numeric',
             'date_paid' => 'required|date',
             'transaction_note' => 'nullable|string|min:3|max:255',

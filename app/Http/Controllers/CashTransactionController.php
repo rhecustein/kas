@@ -17,17 +17,11 @@ class CashTransactionController extends Controller
     {
         $students = User::select(
             'id',
-            'school_class_id',
-            'school_major_id',
             'name',
-            'student_identification_number',
-            'phone_number',
             'gender'
         )->whereHas('role',function($query){
             $query->where('name', 'student');
-        })
-        ->with('schoolClass:id,name', 'schoolMajor:id,name,abbreviation')
-            ->orderBy('student_identification_number')->get();
+        })->get();
 
         $studentsPaidThisWeekIds = CashTransaction::whereBetween('date_paid', [
             now()->startOfWeek()->toDateString(),

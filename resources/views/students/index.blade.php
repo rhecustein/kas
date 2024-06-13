@@ -87,10 +87,7 @@
 							<thead>
 								<tr>
 									<th>#</th>
-									<th>NIP/NPM</th>
 									<th>Nama Lengkap</th>
-									<th>Kelas</th>
-									<th>Jurusan</th>
 									<th>TA</th>
 									<th>Aksi</th>
 								</tr>

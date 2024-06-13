@@ -6,8 +6,6 @@ use App\Http\Controllers\CashTransactionController;
 use App\Http\Controllers\CashTransactionFilterController;
 use App\Http\Controllers\CashTransactionReportController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SchoolClassController;
-use App\Http\Controllers\SchoolMajorController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,11 +30,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-    Route::middleware('role:admin')->group(function(){
+    Route::middleware('onlyadmin')->group(function(){
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-        Route::get('/school-classes', SchoolClassController::class)->name('school-classes.index');
-        Route::get('/school-majors', SchoolMajorController::class)->name('school-majors.index');
+
         Route::get('/administrators', AdministratorController::class)->name('administrators.index');
         Route::get('/students', StudentController::class)->name('students.index');
         Route::get('/cash-transactions', CashTransactionController::class)->name('cash-transactions.index');
