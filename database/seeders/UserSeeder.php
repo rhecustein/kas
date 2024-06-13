@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
-use App\Models\SchoolClass;
-use App\Models\SchoolMajor;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -74,8 +72,6 @@ class UserSeeder extends Seeder
                 "name"=>$student,
                 "role_id"=>$role_student->id,
                 "gender"=> mt_rand(1,2),
-                "school_class_id"=>SchoolClass::inRandomOrder()->first()->id,
-                "school_major_id"=>SchoolMajor::inRandomOrder()->first()->id,
                 "school_year_start"=>2022,
                 "school_year_end"=>2025,
                 "password"=> bcrypt('12345678')
