@@ -18,14 +18,19 @@ class CashTransactionFactory extends Factory
      */
     public function definition(): array
     {
+
+        $categories = ["UKT","SPP","Praktikum","Ujian","SKS","Wisuda"];
+        $approved = [true,false];
         return [
             'student_id' => function () {
                 return \App\Models\User::whereHas('role', function ($query) {
                     $query->where('name', 'student');
                 })->inRandomOrder()->first()->id;
             },
+            "category"=>$categories[array_rand($categories)],
             'amount' => $this->faker->numberBetween(10000, 1000000),
             'date_paid' => $this->faker->date(),
+            'approved'=>$approved[array_rand($approved)],
             'transaction_note' => $this->faker->sentence(),
             'created_by' => function () {
                 return \App\Models\User::whereHas('role', function ($query) {

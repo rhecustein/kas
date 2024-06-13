@@ -41,13 +41,9 @@ class AuthenticationController extends Controller
 
         if (auth()->attempt($request->only($fields))) {
             $request->session()->regenerate();
-            $role_admin = Role::where('name','admin')->get()->first()->id;
-            $user_role = Auth::user()->role_id;
-            if($user_role != $role_admin) return redirect()->route('cash-transactions.report.index');
             return redirect()->intended('dashboard');
         }
-
-        return redirect()->route('login')->with('error', 'Username atau password salah!');
+        return redirect()->back()->with('error', 'Username atau password salah!');
     }
 
     /**

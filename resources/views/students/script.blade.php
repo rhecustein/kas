@@ -108,7 +108,7 @@
 				success: (res) => {
 
 					$("#updateModal form #name").val(res.data.name);
-
+					$("#updateModal form #email").val(res.data.email);
 					$("#updateModal form #gender").val(res.data.gender);
 					$("#updateModal form #school_year_start").val(
 						res.data.school_year_start
@@ -129,6 +129,7 @@
 
 			const formData = {
 				name: $("#updateModal form #name").val(),
+				email: $("#updateModal form #email").val(),
 				gender: $("#updateModal form #gender").val(),
 				school_year_start: $("#updateModal form #school_year_start").val(),
 				school_year_end: $("#updateModal form #school_year_end").val(),

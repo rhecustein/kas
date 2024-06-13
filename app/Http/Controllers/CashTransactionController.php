@@ -61,6 +61,12 @@ class CashTransactionController extends Controller
             ],
         ];
 
-        return view('cash_transactions.index', compact('cashTransaction', 'students'));
+        $transactionCountUnApproved = CashTransaction::whereHas('student', function ($query) {
+            $query->whereHas('role',function($query){
+                $query->where('name','student');
+            });
+        })->where('approved',false) ->count();
+
+        return view('cash_transactions.index', compact('cashTransaction','transactionCountUnApproved', 'students'));
     }
 }

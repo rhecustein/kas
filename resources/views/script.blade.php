@@ -178,5 +178,8 @@
 				updateCashTransactionsChartByYear();
 			}
 		});
+
+
+
 	});
 </script>

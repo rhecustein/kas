@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('cash_transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('category')->nullable();
+            $table->string('image')->nullable();
             $table->foreignId('student_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->bigInteger('amount');
             $table->date('date_paid');
             $table->text('transaction_note')->nullable();
             $table->foreignId('created_by')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->boolean('approved')->default(false);
             $table->timestamps();
         });
     }

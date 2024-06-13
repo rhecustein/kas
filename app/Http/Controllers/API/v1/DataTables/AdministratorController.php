@@ -22,7 +22,7 @@ class AdministratorController extends Controller
     {
         $administrators = User::whereHas('role',function($query){
             $query->where('name', 'admin');
-        })->select('id', 'name', 'email', 'created_at');
+        })->select('id', 'name', 'email', 'created_at')->latest();
 
         return datatables()->of($administrators)
             ->addIndexColumn()

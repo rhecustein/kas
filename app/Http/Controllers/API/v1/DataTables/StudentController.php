@@ -25,7 +25,7 @@ class StudentController extends Controller
             'school_year_end'
         )->whereHas('role', function ($query) {
             $query->where('name', 'student');
-        })->latest();
+        })->orderBy('created_at', 'desc');
 
         return datatables()->of($students)
             ->addIndexColumn()
@@ -45,10 +45,8 @@ class StudentController extends Controller
     public function store(Request $request): JsonResponse
     {
         $rules = [
-            'student_identification_number' => 'nullable|numeric|unique:students,student_identification_number',
             'name' => 'required|string|min:3|max:255',
-            'email' => 'nullable|email|min:3|max:255|unique:students,email',
-            'phone_number' => 'nullable|numeric|digits_between:3,255|unique:students,phone_number',
+            'email' => 'nullable|email|min:3|max:255',
             'gender' => 'required|numeric|in:1,2',
             'school_year_start' => 'required|numeric|digits_between:3,255',
             'school_year_end' => 'required|numeric|digits_between:3,255',
@@ -134,10 +132,8 @@ class StudentController extends Controller
     public function update(Request $request, User $student): JsonResponse
     {
         $rules = [
-            'student_identification_number' => 'nullable|numeric|unique:students,student_identification_number,' . $student->id,
             'name' => 'required|string|min:3|max:255',
-            'email' => 'nullable|email|min:3|max:255|unique:students,email,' . $student->id,
-            'phone_number' => 'nullable|numeric|digits_between:3,255|unique:students,phone_number,' . $student->id,
+            'email' => 'nullable|email|min:3|max:255|unique:users,email',
             'gender' => 'required|numeric|in:1,2',
             'school_year_start' => 'required|numeric|digits_between:3,255',
             'school_year_end' => 'required|numeric|digits_between:3,255',

@@ -35,6 +35,15 @@
 										</div>
 									</div>
 								</div>
+								<div class="form-group has-icon-left">
+									<label for="email">Email:</label>
+									<div class="position-relative">
+										<input type="text" class="form-control" id="email" placeholder="Masukkan nama Email" />
+										<div class="form-control-icon">
+											<i class="bi bi-envelope-fill"></i>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="col-lg-6">
 								<div class="form-group has-icon-left">

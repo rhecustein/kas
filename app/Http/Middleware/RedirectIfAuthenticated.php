@@ -22,7 +22,6 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if(Auth::user()->role_id != Role::where('name','admin')->get()->first()->id) return redirect()->route('cash-transactions.report.index');
                 return redirect(RouteServiceProvider::HOME);
             }
         }

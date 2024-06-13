@@ -175,6 +175,8 @@
 			});
 		});
 
+
+
 		$("#table").on("click", ".delete", function (e) {
 			e.preventDefault();
 

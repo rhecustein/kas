@@ -51,17 +51,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-6">
-								<div class="form-group has-icon-left">
-									<label for="phone_number">Alamat Email:</label>
-									<div class="position-relative">
-										<input type="text" class="form-control" id="phone_number" disabled />
-										<div class="form-control-icon">
-											<i class="bi bi-telephone-fill"></i>
-										</div>
-									</div>
-								</div>
-							</div>
+
 						</div>
 
 						<div class="row">

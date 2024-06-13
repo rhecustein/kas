@@ -11,7 +11,7 @@ class CashTransaction extends Model
     use HasFactory;
     public $timestamps = true;
 
-    protected $fillable = ['student_id', 'amount', 'date_paid', 'transaction_note', 'created_by',];
+    protected $fillable = ['category','image','approved','student_id', 'amount', 'date_paid', 'transaction_note', 'created_by',];
 
     /**
      * Get student relationship data.

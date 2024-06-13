@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\v1\CashTransactionStatisticController;
 use App\Http\Controllers\API\v1\DataTables\AdministratorController;
+use App\Http\Controllers\API\v1\DataTables\ApproveTransactionController;
 use App\Http\Controllers\API\v1\DataTables\CashTransactionController;
 use App\Http\Controllers\API\v1\DataTables\StudentController;
 use Illuminate\Http\Request;
@@ -32,5 +33,10 @@ Route::prefix('v1/')->name('api.v1.')->group(function () {
             '/students' => StudentController::class,
             '/cash-transactions' => CashTransactionController::class,
         ]);
+
     });
+
+    Route::get('datatable/approve/list',[CashTransactionController::class,'viewapprove'])->name('datatables.approved.list');
+    Route::post('approve',[ApproveTransactionController::class,'approved'])->name('approved');
+
 });

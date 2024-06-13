@@ -7,6 +7,7 @@ use App\Models\SchoolMajor;
 use App\Models\User;
 use App\Services\ChartGenerator;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -24,6 +25,9 @@ class DashboardController extends Controller
     {
         $charts = $this->chartGenerator->generateCharts();
 
+        if(Auth::user()->role->name != 'admin'){
+            return view('dashboard_msh');
+        }
         return view('dashboard', compact('charts'));
     }
 }

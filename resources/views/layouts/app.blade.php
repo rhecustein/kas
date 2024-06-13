@@ -68,38 +68,38 @@
 				<div class="sidebar-menu">
 					<ul class="menu">
 						<li class="sidebar-title">Menu</li>
-						@if(Auth::user()->role->name == "admin" )
 						<li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
 							<a href="{{ route('dashboard') }}" class="sidebar-link">
 								<i class="bi bi-grid-fill"></i>
 								<span>Dashboard</span>
 							</a>
 						</li>
+						@if(Auth::user()->role->name == "admin" )
 
 						<!-- <li class="sidebar-title"><i class="bi bi-menu-button-wide"></i></li> -->
 						<li
-							class="sidebar-item has-sub {{ request()->routeIs('cash-transactions.index') ? 'active' : '' }} {{ request()->routeIs('cash-transactions.filter.index') ? 'active' : '' }}">
+							class="sidebar-item has-sub {{ request()->routeIs('students.*') ? 'active' : '' }}">
 							<a href="#" class="sidebar-link">
 								<i class="bi bi-cash-stack"></i>
 								<span>Manajemen Anggota</span>
 							</a>
 
 							<ul class="submenu">
-							<li class="sidebar-item {{ request()->routeIs('students.*') ? 'active' : '' }}">
-							<a href="{{ route('students.index') }}" class="sidebar-link">
-								<i class="bi bi-people-fill"></i>
-								<span>Mahasiswa</span>
-							</a>
-						</li>
+								<li class="submenu-item {{ request()->routeIs('students.*') ? 'active' : '' }}">
+									<a href="{{ route('students.index') }}" class="submenu-link">
+										<span>Mahasiswa</span>
+									</a>
+								</li>
 							</ul>
 						</li>
 
 						<li
-							class="sidebar-item has-sub {{ request()->routeIs('cash-transactions.index') ? 'active' : '' }} {{ request()->routeIs('cash-transactions.filter.index') ? 'active' : '' }}">
+							class="sidebar-item has-sub {{ request()->routeIs('cash-transactions.index') ? 'active' : '' }} {{ request()->routeIs('cash-transactions.filter.index') ? 'active' : '' }} {{ request()->routeIs('cash-transactions.approve.*') ? 'active' : '' }}">
 							<a href="#" class="sidebar-link">
 								<i class="bi bi-cash-stack"></i>
 								<span>Manajamen Kas</span>
 							</a>
+
 
 							<ul class="submenu">
 								<li class="submenu-item {{ request()->routeIs('cash-transactions.index') ? 'active' : '' }}">
@@ -108,6 +108,10 @@
 
 								<li class="submenu-item {{ request()->routeIs('cash-transactions.filter.index') ? 'active' : '' }}">
 									<a href="{{ route('cash-transactions.filter.index') }}" class="submenu-link">Filter Kas</a>
+								</li>
+
+								<li class="submenu-item {{ request()->routeIs('cash-transactions.approve.*') ? 'active' : '' }}">
+									<a href="{{ route('cash-transactions.approve.index') }}" class="submenu-link">Transaksi belum disetujui</a>
 								</li>
 							</ul>
 						</li>
@@ -160,13 +164,13 @@
 			<footer>
 				<div class="footer clearfix mb-0 text-muted">
 					<div class="float-start">
-						<p>2023 &copy; Mazer</p>
+						<p>2024 &copy; ryugenxd</p>
 					</div>
 					<div class="float-end">
 						<p>
-							Crafted with
-							<span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
-							by <a href="https://saugi.me">Saugi</a>
+							Powered
+							<span>⚡</span>
+							by <a href="https://saugi.me">Autobot Community</a>
 						</p>
 					</div>
 				</div>
