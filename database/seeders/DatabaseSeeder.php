@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\CashTransaction;
-use App\Models\SchoolMajor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,8 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
-            SchoolClassSeeder::class,
-            SchoolMajorSeeder::class,
             UserSeeder::class,
             CashTransactionSeeder::class
         ]);
