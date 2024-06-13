@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CashTransactionFilterRequest;
 use App\Models\CashTransaction;
-use App\Models\Student;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 
 class CashTransactionFilterController extends Controller
@@ -32,7 +32,7 @@ class CashTransactionFilterController extends Controller
                 ->whereBetween('date_paid', [$startDate, $endDate])
                 ->get();
 
-            $students = Student::select(
+            $students = User::select(
                 'id',
                 'school_class_id',
                 'school_major_id',
@@ -40,8 +40,9 @@ class CashTransactionFilterController extends Controller
                 'student_identification_number',
                 'phone_number',
                 'gender'
-            )
-                ->with('schoolClass:id,name', 'schoolMajor:id,name,abbreviation')
+            )->whereHas('role',function($query){
+                $query->where('name', 'student');
+            })->with('schoolClass:id,name', 'schoolMajor:id,name,abbreviation')
                 ->orderBy('student_identification_number')->get();
 
             $studentsPaid = $students->whereIn('id', $filteredResult->pluck('student_id'))->sortBy('name');

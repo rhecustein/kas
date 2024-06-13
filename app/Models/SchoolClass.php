@@ -17,8 +17,8 @@ class SchoolClass extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function students(): HasMany
+    public function users(): HasMany
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(User::class);
     }
 }

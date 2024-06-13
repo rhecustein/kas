@@ -19,10 +19,10 @@ class CashTransactionRepository
      */
     public function getCountByGender(): SupportCollection
     {
-        return $this->model->leftJoin('students', 'cash_transactions.student_id', '=', 'students.id')
-            ->selectRaw('students.gender AS gender, COUNT(*) AS total_paid')
-            ->groupBy('gender')
-            ->get();
+        return $this->model->leftJoin('users', 'cash_transactions.student_id', '=', 'users.id')
+        ->selectRaw('users.gender AS gender, COUNT(*) AS total_paid')
+        ->groupBy('gender')
+        ->get();
     }
 
     /**

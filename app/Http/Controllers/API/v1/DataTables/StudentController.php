@@ -4,7 +4,8 @@ namespace App\Http\Controllers\API\v1\DataTables;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\DataTables\StudentResource;
-use App\Models\Student;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,7 @@ class StudentController extends Controller
      */
     public function index(): JsonResponse
     {
-        $students = Student::select(
+        $students = User::select(
             'id',
             'school_class_id',
             'school_major_id',
@@ -25,7 +26,9 @@ class StudentController extends Controller
             'name',
             'school_year_start',
             'school_year_end'
-        )->with('schoolClass:id,name', 'schoolMajor:id,name');
+        )->whereHas('role', function ($query) {
+            $query->where('name', 'student');
+        })->with('schoolClass:id,name', 'schoolMajor:id,name');
 
         return datatables()->of($students)
             ->addIndexColumn()
@@ -49,10 +52,10 @@ class StudentController extends Controller
         $rules = [
             'school_class_id' => 'required|numeric|exists:school_classes,id',
             'school_major_id' => 'required|numeric|exists:school_majors,id',
-            'student_identification_number' => 'required|numeric|unique:students,student_identification_number',
+            'student_identification_number' => 'nullable|numeric|unique:students,student_identification_number',
             'name' => 'required|string|min:3|max:255',
-            'email' => 'required|email|min:3|max:255|unique:students,email',
-            'phone_number' => 'required|numeric|digits_between:3,255|unique:students,phone_number',
+            'email' => 'nullable|email|min:3|max:255|unique:students,email',
+            'phone_number' => 'nullable|numeric|digits_between:3,255|unique:students,phone_number',
             'gender' => 'required|numeric|in:1,2',
             'school_year_start' => 'required|numeric|digits_between:3,255',
             'school_year_end' => 'required|numeric|digits_between:3,255',
@@ -108,8 +111,10 @@ class StudentController extends Controller
                 'message' => $validator->errors()->first(),
             ], Response::HTTP_BAD_REQUEST);
         }
-
-        $student = Student::create($validator->validated());
+        $data = $validator->validated();
+        $data['role_id'] = Role::where('name','student')->get()->first()->id;
+        $data['password'] = bcrypt('12345678');
+        $student = User::create($data);
 
         return response()->json([
             'code' => Response::HTTP_CREATED,
@@ -124,7 +129,7 @@ class StudentController extends Controller
      * @param \App\Models\Student $student
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Student $student): JsonResponse
+    public function show(User $student): JsonResponse
     {
         return response()->json([
             'code' => Response::HTTP_OK,
@@ -140,15 +145,15 @@ class StudentController extends Controller
      * @param \App\Models\Student $student
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Student $student): JsonResponse
+    public function update(Request $request, User $student): JsonResponse
     {
         $rules = [
             'school_class_id' => 'required|numeric|exists:school_classes,id',
             'school_major_id' => 'required|numeric|exists:school_majors,id',
-            'student_identification_number' => 'required|numeric|unique:students,student_identification_number,' . $student->id,
+            'student_identification_number' => 'nullable|numeric|unique:students,student_identification_number,' . $student->id,
             'name' => 'required|string|min:3|max:255',
-            'email' => 'required|email|min:3|max:255|unique:students,email,' . $student->id,
-            'phone_number' => 'required|numeric|digits_between:3,255|unique:students,phone_number,' . $student->id,
+            'email' => 'nullable|email|min:3|max:255|unique:students,email,' . $student->id,
+            'phone_number' => 'nullable|numeric|digits_between:3,255|unique:students,phone_number,' . $student->id,
             'gender' => 'required|numeric|in:1,2',
             'school_year_start' => 'required|numeric|digits_between:3,255',
             'school_year_end' => 'required|numeric|digits_between:3,255',
@@ -220,7 +225,7 @@ class StudentController extends Controller
      * @param \App\Models\Student $student
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Student $student): JsonResponse
+    public function destroy(User $student): JsonResponse
     {
         if ($student->cashTransactions()->exists()) {
             return response()->json([

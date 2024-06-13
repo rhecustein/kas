@@ -2,12 +2,12 @@
 
 namespace App\Repositories;
 
-use App\Models\Student;
+use App\Models\User;
 
 class StudentRepository
 {
     public function __construct(
-        private Student $model
+        private User $model
     ) {
     }
 
@@ -18,7 +18,9 @@ class StudentRepository
      */
     public function countStudentGender(): array
     {
-        $students = $this->model->select('gender')->get();
+        $students = $this->model->whereHas('role', function ($query) {
+            $query->where('name', 'student');
+        })->select('gender')->get();
 
         $counts = $students->countBy(function ($student) {
             return $student->gender == 1 ? 'male' : 'female';

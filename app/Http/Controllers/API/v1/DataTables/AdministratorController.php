@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1\DataTables;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\DataTables\AdministratorResource;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -72,8 +73,9 @@ class AdministratorController extends Controller
                 'message' => $validator->errors()->first(),
             ], Response::HTTP_BAD_REQUEST);
         }
-
-        $administrator = User::create($validator->validated());
+        $data = $validator->validated();
+        $data['role_id'] = Role::where('name','admin')->get()->first()->id;
+        $administrator = User::create($data);
 
         return response()->json([
             'code' => Response::HTTP_CREATED,
