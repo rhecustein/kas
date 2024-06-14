@@ -44,6 +44,15 @@
 										</div>
 									</div>
 								</div>
+								<div class="form-group has-icon-left">
+									<label for="name">Username:</label>
+									<div class="position-relative">
+										<input type="text" class="form-control" id="username" placeholder="Masukkan Username" />
+										<div class="form-control-icon">
+											<i class="bi bi-person-fill"></i>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="col-lg-6">
 								<div class="form-group has-icon-left">
@@ -57,6 +66,24 @@
 											<option value="1">Laki-laki</option>
 											<option value="2">Perempuan</option>
 										</select>
+									</div>
+								</div>
+								<div class="form-group has-icon-left">
+									<label for="password">Kata Sandi:</label>
+									<div class="position-relative">
+										<input type="password" class="form-control" id="password" placeholder="Masukkan Kata Sandi" />
+										<div class="form-control-icon">
+											<i class="bi bi-lock-fill"></i>
+										</div>
+									</div>
+								</div>
+								<div class="form-group has-icon-left">
+									<label for="password_confirmation">Konfirmasi Kata Sandi:</label>
+									<div class="position-relative">
+										<input type="password" class="form-control" id="password_confirmation" placeholder="Masukkan Konfirmasi Kata Sandi" />
+										<div class="form-control-icon">
+											<i class="bi bi-lock-fill"></i>
+										</div>
 									</div>
 								</div>
 							</div>
