@@ -39,12 +39,8 @@
 											<div><i class="bi bi-clipboard-minus-fill"></i></div>
 										</label>
 										<select class="form-select form-select-sm" id="category">
-											<option value="UKT">Uang Kuliah Tunggal</option>
-											<option value="SPP">Sumbangan Pembinaan Pendidikan</option>
-											<option value="Praktikum">Biaya Praktikum</option>
-											<option value="Ujian">Biaya Ujian</option>
-											<option value="SKS">Biaya SKS</option>
-											<option value="Wisuda">Biaya Wisuda</option>
+											<option value="KAS">Kas</option>
+											
 										</select>
 									</div>
 								</div>
