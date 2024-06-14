@@ -133,6 +133,8 @@ class StudentController extends Controller
     {
         $rules = [
             'name' => 'required|string|min:3|max:255',
+            'username' => 'required|string|min:3|max:255',
+            'password'=>'nullable|confirmed|min:6',
             'email' => 'nullable|email|min:3|max:255|unique:users,email',
             'gender' => 'required|numeric|in:1,2',
             'school_year_start' => 'required|numeric|digits_between:3,255',
@@ -140,7 +142,7 @@ class StudentController extends Controller
         ];
 
         $messages = [
-
+            'student_identification_number.required' => 'Kolom nomor identitas pelajar harus diisi!',
             'student_identification_number.required' => 'Kolom nomor identitas pelajar harus diisi!',
             'student_identification_number.numeric' => 'Kolom nomor identitas pelajar harus berupa angka!',
             'student_identification_number.unique' => 'Nomor identitas pelajar sudah digunakan!',
@@ -150,6 +152,13 @@ class StudentController extends Controller
             'name.min' => 'Panjang nama minimal :min karakter!',
             'name.max' => 'Panjang nama maksimal :max karakter!',
 
+            'username.required' => 'Kolom username harus diisi!',
+            'username.string' => 'Kolom username harus berupa teks!',
+            'username.min' => 'Panjang username minimal :min karakter!',
+            'username.max' => 'Panjang username maksimal :max karakter!',
+
+            'password.min' => 'Panjang password minimal :min karakter!',
+            'password.confirmed' => 'Konfirmasi kata sandi harus sama!',
             'email.required' => 'Kolom email harus diisi!',
             'email.email' => 'Format email tidak valid!',
             'email.min' => 'Panjang email minimal :min karakter!',
@@ -182,8 +191,11 @@ class StudentController extends Controller
                 'message' => $validator->errors()->first(),
             ], Response::HTTP_BAD_REQUEST);
         }
-
-        $student->update($validator->validated());
+        $data = $validator->validated();
+        if(!is_null($request->password)){
+            $data['password'] = bcrypt($request->password);
+        }
+        $student->update($data);
 
         return response()->json([
             'code' => Response::HTTP_OK,

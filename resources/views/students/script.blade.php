@@ -109,6 +109,7 @@
 
 					$("#updateModal form #name").val(res.data.name);
 					$("#updateModal form #email").val(res.data.email);
+					$("#updateModal form #username").val(res.data.username);
 					$("#updateModal form #gender").val(res.data.gender);
 					$("#updateModal form #school_year_start").val(
 						res.data.school_year_start
@@ -129,6 +130,9 @@
 
 			const formData = {
 				name: $("#updateModal form #name").val(),
+				username: $("#updateModal form #username").val(),
+				password: $("#updateModal form #password").val(),
+				password_confirmation: $("#updateModal form #password_confirmation").val(),
 				email: $("#updateModal form #email").val(),
 				gender: $("#updateModal form #gender").val(),
 				school_year_start: $("#updateModal form #school_year_start").val(),
