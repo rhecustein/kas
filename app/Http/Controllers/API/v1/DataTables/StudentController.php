@@ -25,7 +25,7 @@ class StudentController extends Controller
             'school_year_end'
         )->whereHas('role', function ($query) {
             $query->where('name', 'student');
-        })->orderBy('created_at', 'desc');
+        });
 
         return datatables()->of($students)
             ->addIndexColumn()
@@ -159,6 +159,7 @@ class StudentController extends Controller
 
             'password.min' => 'Panjang password minimal :min karakter!',
             'password.confirmed' => 'Konfirmasi kata sandi harus sama!',
+
             'email.required' => 'Kolom email harus diisi!',
             'email.email' => 'Format email tidak valid!',
             'email.min' => 'Panjang email minimal :min karakter!',
@@ -184,7 +185,6 @@ class StudentController extends Controller
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
-
         if ($validator->fails()) {
             return response()->json([
                 'code' => Response::HTTP_BAD_REQUEST,
@@ -192,9 +192,12 @@ class StudentController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
         $data = $validator->validated();
-        if(!is_null($request->password)){
+        if(!empty($request->password)){
             $data['password'] = bcrypt($request->password);
+        }else{
+            unset($data['password']);
         }
+
         $student->update($data);
 
         return response()->json([

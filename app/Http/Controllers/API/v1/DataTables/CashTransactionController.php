@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CashTransaction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,7 @@ class CashTransactionController extends Controller
                 });
             })
             ->where('approved',true)
-            ->orderBy('created_at', 'desc')
+            ->latest('id')
             ->get()
             ->append('amount_formatted')
             ->append('date_paid_formatted');
@@ -42,6 +43,7 @@ class CashTransactionController extends Controller
     }
 
 
+
     public function viewapprove(): JsonResponse
     {
         $cashTransactions = CashTransaction::select('id', 'image','student_id',
@@ -53,7 +55,7 @@ class CashTransactionController extends Controller
             })
             ->with('student:id,name', 'createdBy:id,name')
             ->where('approved',false)
-            ->orderBy('created_at', 'desc')
+            ->latest('id')
             ->get()
             ->append('amount_formatted')
             ->append('date_paid_formatted');

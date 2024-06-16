@@ -73,6 +73,7 @@
 				},
 				success: (res) => {
 					$("#showModal form #name").val(res.data.name);
+					$("#showModal form #email").val(res.data.email);
 					$("#showModal form #gender").val(res.data.gender_name);
 					$("#showModal form #school_year_start").val(
 						res.data.school_year_start
@@ -106,7 +107,6 @@
 					"Content-Type": "application/json",
 				},
 				success: (res) => {
-
 					$("#updateModal form #name").val(res.data.name);
 					$("#updateModal form #email").val(res.data.email);
 					$("#updateModal form #username").val(res.data.username);
@@ -151,7 +151,6 @@
 				success: (res) => {
 					table.ajax.reload();
 					$("#updateModal").modal("hide");
-
 					Swal.fire({
 						icon: "success",
 						title: "Data Mahasiswa berhasil diubah!",

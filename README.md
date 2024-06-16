@@ -18,8 +18,6 @@ Jika Anda menggunakan XAMPP, untuk PHP dan MySQL sudah menjadi 1 (bundle) di dal
 ### Fitur
 
 -   CRUD Data Siswa
--   CRUD Data Divisi
--   CRUD Data Fakultas
 -   CRUD Data Transaksi Uang Kas
 -   CRUD Data Administrator
 -   Laporan
@@ -35,11 +33,6 @@ _Dashboard_
 _Daftar Pelajar_
 ![Daftar Pelajar](https://i.ibb.co/r49hxYB/students.png)
 
-_Daftar Kelas_
-![Daftar Kelas](https://i.ibb.co/6Rqvt4n/schoolclasses.png)
-
-_Daftar Jurusan_
-![Daftar Jurusan](https://i.ibb.co/D1wn5Tm/schoolmajors.png)
 
 _Daftar Kas_
 ![Daftar Kas](https://i.ibb.co/jMK1R7j/cashtransactionthisyear.png)

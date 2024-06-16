@@ -178,6 +178,7 @@
 							<tr>
 								<th>#</th>
 								<th>Pelajar</th>
+								<th>Kategori</th>
 								<th>Tanggal Transaksi</th>
 								<th>Nominal Pembayaran</th>
 								<th>Dicatat Oleh</th>
@@ -188,6 +189,7 @@
 							<tr>
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $cashTransaction->student->name }}</td>
+								<td>{{ $cashTransaction->category }}</td>
 								<td>{{ $cashTransaction->date_paid_formatted }}</td>
 								<td>{{ $cashTransaction->amount_formatted }}</td>
 								<td>{{ $cashTransaction->createdBy->name }}</td>
@@ -211,9 +213,4 @@
 
 
 @pushOnce('scripts')
-<script>
-	$(function () {
-		const table = $('#table').DataTable({});
-	});
-</script>
 @endPushOnce
