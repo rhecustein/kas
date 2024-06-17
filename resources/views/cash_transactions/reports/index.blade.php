@@ -181,6 +181,7 @@
 								<th>Kategori</th>
 								<th>Tanggal Transaksi</th>
 								<th>Nominal Pembayaran</th>
+								<th>Metode Transaksi</th>
 								<th>Status</th>
 								<th>Dicatat Oleh</th>
 							</tr>
@@ -193,6 +194,7 @@
 								<td>{{ $cashTransaction->category }}</td>
 								<td>{{ $cashTransaction->date_paid_formatted }}</td>
 								<td>{{ $cashTransaction->amount_formatted }}</td>
+								<td>{{ $cashTransaction->method }}</td>
 								<td class="text-bold-500">
 									<span class="badge {{$cashTransaction->approved?'text-bg-success':'text-bg-danger'}}">{{$cashTransaction->approved?'Terverifikasi':'Belum Terverifikasi'}}</span>
 								</td>

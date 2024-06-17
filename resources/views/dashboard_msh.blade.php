@@ -104,7 +104,7 @@
 											<div><i class="bi bi-bank"></i></div>
 										</label>
 										<select class="form-select form-select-sm" id="method">
-											<option value="Dana" selected>Dana</option>
+											<option value="Tf dana - 085776040201" selected>Tf dana - 085776040201</option>
 											<option value="Setoran Tunai">Setoran Tunai</option>
 										</select>
 									</div>
