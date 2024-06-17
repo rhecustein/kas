@@ -6,6 +6,7 @@ $(function(){
 			const formData = new FormData();
       formData.append('image', $("#image")[0].files[0]);
       formData.append('category',$("#category").val());
+			formData.append('method',$("#method").val());
       formData.append('student_id',$("#student_id").val());
       formData.append('amount',$("#amount").val());
 			formData.append('date_paid',$("#date_paid").val());

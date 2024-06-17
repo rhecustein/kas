@@ -47,7 +47,7 @@
 </svg> <span class="p-2 font-bold"> Notifikasi Pembayaran</span></p>
 
 <p class="p-3">1. Anda akan menerima notifikasi melalui email atau notifikasi dalam aplikasi mengenai status pembayaran.</p>
-<p class="p-3">2. Periksa status pembayaran pada menu "Laporan Transaksi" untuk memastikan pembayaran telah diterima dan diverifikasi.</p>
+<p class="p-3">2. Periksa status pembayaran pada menu "Laporan Transaksi" <b>filter data dengan rentang tanggal</b> transaksi untuk menapilkan riwayat transaksi dan status transaksi.</p>
 
       </div>
       <div class="modal-footer">
@@ -73,7 +73,7 @@
 											<div><i class="bi bi-clipboard-minus-fill"></i></div>
 										</label>
 										<select class="form-select form-select-sm" id="category">
-											<option value="UKT">Uang Kuliah Tunggal</option>
+											<option value="UKT"  selected>Uang Kuliah Tunggal</option>
 											<option value="SPP">Sumbangan Pembinaan Pendidikan</option>
 											<option value="Praktikum">Biaya Praktikum</option>
 											<option value="Ujian">Biaya Ujian</option>
@@ -83,6 +83,7 @@
 									</div>
 								</div>
 							</div>
+
 
 							<div class="col-md-12">
 								<div class="form-group has-icon-right">
@@ -94,6 +95,21 @@
 										</div>
 									</div>
 								</div>
+
+								<div class="col-md-12">
+								<div class="form-group has-icon-left">
+									<label for="method">Metode Pembayaran:</label>
+									<div class="input-group mb-3">
+										<label class="input-group-text" for="student_id">
+											<div><i class="bi bi-bank"></i></div>
+										</label>
+										<select class="form-select form-select-sm" id="method">
+											<option value="Dana" selected>Dana</option>
+											<option value="Setoran Tunai">Setoran Tunai</option>
+										</select>
+									</div>
+								</div>
+							</div>
 
 								<div class="form-group has-icon-left">
 									<label for="amount">Tagihan:</label>

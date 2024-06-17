@@ -20,7 +20,7 @@ class CashTransactionController extends Controller
      */
     public function index(): JsonResponse
     {
-        $cashTransactions = CashTransaction::select('id', 'student_id', 'amount', 'date_paid', 'created_by')
+        $cashTransactions = CashTransaction::select('id', 'student_id','method', 'amount', 'date_paid', 'created_by')
             ->with('student:id,name', 'createdBy:id,name')
             ->whereHas('student', function ($query) {
                 $query->whereHas('role',function($query){
@@ -46,7 +46,7 @@ class CashTransactionController extends Controller
 
     public function viewapprove(): JsonResponse
     {
-        $cashTransactions = CashTransaction::select('id', 'image','student_id',
+        $cashTransactions = CashTransaction::select('id', 'image','method','student_id',
         'category', 'amount', 'date_paid', 'created_by')
             ->whereHas('student', function ($query) {
                 $query->whereHas('role',function($query){
@@ -86,6 +86,7 @@ class CashTransactionController extends Controller
             'student_id' => 'required|exists:users,id',
             'image'=>'nullable|image',
             'category'=>'nullable|string',
+            'method'=>'nullable|string',
             'amount' => 'required|numeric',
             'date_paid' => 'required|date',
             'transaction_note' => 'nullable|string|min:3|max:255',
@@ -96,7 +97,9 @@ class CashTransactionController extends Controller
             'student_id.required' => 'Kolom pelajar harus diisi!',
             'student_id.exists' => 'Pelajar yang dipilih tidak ditemukan!',
             'image.image'=>'Bukti Transaksi Harus berupa file gambar',
-            'category.string' => 'Kolom catatan kategori harus berupa teks!',
+
+            'category.string' => 'Kolom kategori harus berupa teks!',
+            'method.string' => 'Kolom metode transaksi harus berupa teks!',
 
             'amount.required' => 'Kolom tagihan harus diisi!',
             'amount.numeric' => 'Kolom tagihan harus berupa angka!',

@@ -21,12 +21,14 @@ class CashTransactionFactory extends Factory
 
         $categories = ["UKT","SPP","Praktikum","Ujian","SKS","Wisuda"];
         $approved = [true,false];
+        $methods = ["Dana","Setoran Tunai"];
         return [
             'student_id' => function () {
                 return \App\Models\User::whereHas('role', function ($query) {
                     $query->where('name', 'student');
                 })->inRandomOrder()->first()->id;
             },
+            "method"=>$methods[array_rand($methods)],
             "category"=>$categories[array_rand($categories)],
             'amount' => $this->faker->numberBetween(10000, 1000000),
             'date_paid' => $this->faker->date(),

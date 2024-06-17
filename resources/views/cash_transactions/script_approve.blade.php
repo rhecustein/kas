@@ -8,6 +8,7 @@
 				{ data: "DT_RowIndex", name: "DT_RowIndex" },
 				{	data:"preview",name:"preview"},
 				{ data: "student.name", name: "student_id" },
+				{ data: "method", name: "method" },
 				{ data: "amount", name: "amount" },
 				{ data: "category", name: "category" },
 				{ data: "date_paid_formatted", name: "date_paid" },
