@@ -13,6 +13,7 @@
 			columns: [
 				{ data: "DT_RowIndex", name: "DT_RowIndex" },
 				{ data: "student.name", name: "student_id" },
+				{ data: "method", name: "method" },
 				{ data: "amount", name: "amount" },
 				{ data: "date_paid_formatted", name: "date_paid" },
 				{ data: "created_by.name", name: "created_by" },

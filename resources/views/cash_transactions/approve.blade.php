@@ -61,6 +61,7 @@
 									<th>#</th>
 									<th scope="col">Foto Bukti Transaksi</th>
 										<th scope="col">Nama Mahasiswa</th>
+										<th scope="col">Metode Transaksi</th>
 										<th scope="col">Total Bayar</th>
 										<th scope="col">Kategori</th>
 										<th scope="col">Tanggal</th>

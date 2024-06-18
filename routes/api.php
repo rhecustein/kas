@@ -36,6 +36,7 @@ Route::prefix('v1/')->name('api.v1.')->group(function () {
 
     });
 
+
     Route::get('datatable/approve/list',[CashTransactionController::class,'viewapprove'])->name('datatables.approved.list');
     Route::post('approve',[ApproveTransactionController::class,'approved'])->name('approved');
 

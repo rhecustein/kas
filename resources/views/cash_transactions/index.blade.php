@@ -171,6 +171,7 @@
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">Nama Mahasiswa</th>
+									<th scope="col">Metode Transaksi</th>
 									<th scope="col">Total Bayar</th>
 									<th scope="col">Tanggal</th>
 									<th scope="col">Dicatat Oleh</th>

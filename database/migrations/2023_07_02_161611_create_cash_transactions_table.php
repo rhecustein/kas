@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('category')->nullable();
             $table->string('image')->nullable();
+            $table->string('method')->nullable();
             $table->foreignId('student_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->bigInteger('amount');
             $table->date('date_paid');
